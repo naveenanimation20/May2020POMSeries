@@ -7,8 +7,12 @@
 <!-- 			<listener class-name="com.qa.hubspot.testlisteners.TesultsListener" />
  -->	
 <!-- 		<listener class-name="com.qa.hubspot.testlisteners.TestAllureListener" />
- --><!-- 		<listener class-name="com.qa.hubspot.testlisteners.ExtentReportListener" />
- --><!-- 		<listener class-name="com.qa.hubspot.testlisteners.pdfListener" />-->	
+ -->
+ 
+  		<listener class-name="com.qa.hubspot.testlisteners.ExtentReportListener" />
+
+ 
+ <!-- 		<listener class-name="com.qa.hubspot.testlisteners.pdfListener" />-->	
  </listeners>
 
 	<test name="HubSpot Feature Testing - login">
