@@ -4,8 +4,8 @@
 <suite name="Hub spot Test automtion regression suite" verbose="1">
 
 	<listeners>
-			<listener class-name="com.qa.hubspot.testlisteners.TesultsListener" />
-	
+<!-- 			<listener class-name="com.qa.hubspot.testlisteners.TesultsListener" />
+ -->	
 <!-- 		<listener class-name="com.qa.hubspot.testlisteners.TestAllureListener" />
  --><!-- 		<listener class-name="com.qa.hubspot.testlisteners.ExtentReportListener" />
  --><!-- 		<listener class-name="com.qa.hubspot.testlisteners.pdfListener" />-->	
