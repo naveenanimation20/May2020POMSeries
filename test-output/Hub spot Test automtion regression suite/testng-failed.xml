@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" guice-stage="DEVELOPMENT" name="Failed suite [Hub spot Test automtion regression suite]" parallel="tests">
+  <listeners>
+    <listener class-name="com.qa.hubspot.testlisteners.TesultsListener"/>
+    <listener class-name="com.qa.hubspot.testlisteners.TestAllureListener"/>
+    <listener class-name="com.qa.hubspot.testlisteners.ExtentReportListener"/>
+  </listeners>
+  <test thread-count="3" name="HubSpot Feature Testing - Contacts Page - chrome(failed)" parallel="tests">
+    <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="com.qa.hubspot.tests.ContactsPageTest">
+        <methods>
+          <include name="verifyContactsPageHeader"/>
+          <include name="setUp"/>
+          <include name="contactsPageSetup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.qa.hubspot.tests.ContactsPageTest -->
+    </classes>
+  </test> <!-- HubSpot Feature Testing - Contacts Page - chrome(failed) -->
+  <test thread-count="3" name="HubSpot Feature Testing - contacts page - firefox(failed)" parallel="tests">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.qa.hubspot.tests.ContactsPageTest">
+        <methods>
+          <include name="verifyContactsPageHeader"/>
+          <include name="setUp"/>
+          <include name="contactsPageSetup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- com.qa.hubspot.tests.ContactsPageTest -->
+    </classes>
+  </test> <!-- HubSpot Feature Testing - contacts page - firefox(failed) -->
+</suite> <!-- Failed suite [Hub spot Test automtion regression suite] -->

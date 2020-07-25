@@ -45,39 +45,42 @@ public class BasePage {
 		String browserName = prop.getProperty("browser").trim();
 
 		System.out.println("browser name is : " + browserName);
-		optionsManager = new OptionsManager(prop);
+		if (driver == null) {
+			optionsManager = new OptionsManager(prop);
+			if (browserName.equalsIgnoreCase("chrome")) {
+				WebDriverManager.chromedriver().setup();
 
-		if (browserName.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
+				if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+					init_remoteWebDriver(browserName);
+				} else {
+					tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+				}
+			} else if (browserName.equalsIgnoreCase("firefox")) {
+				WebDriverManager.firefoxdriver().setup();
+				if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+					init_remoteWebDriver(browserName);
+				} else {
+					tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+				}
 
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				init_remoteWebDriver(browserName);
+			} else if (browserName.equalsIgnoreCase("safari")) {
+				WebDriverManager.getInstance(SafariDriver.class).setup();
+				// driver = new SafariDriver();
+				tlDriver.set(new SafariDriver());
 			} else {
-				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
-			}
-		} else if (browserName.equalsIgnoreCase("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				init_remoteWebDriver(browserName);
-			} else {
-				tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
+				System.out.println(browserName + " is not found, please pass the correct browser....");
 			}
 
-		} else if (browserName.equalsIgnoreCase("safari")) {
-			WebDriverManager.getInstance(SafariDriver.class).setup();
-			// driver = new SafariDriver();
-			tlDriver.set(new SafariDriver());
+			getDriver().manage().deleteAllCookies();
+			getDriver().manage().window().maximize();
+			getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+			getDriver().get(prop.getProperty("url"));
+
+			return getDriver();
 		} else {
-			System.out.println(browserName + " is not found, please pass the correct browser....");
+			return getDriver();
 		}
-
-		getDriver().manage().deleteAllCookies();
-		getDriver().manage().window().maximize();
-		getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
-		getDriver().get(prop.getProperty("url"));
-
-		return getDriver();
 	}
 
 	/**
