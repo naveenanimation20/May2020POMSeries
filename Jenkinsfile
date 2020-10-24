@@ -10,6 +10,7 @@ agent any
         stage ('Test') { 
         steps{
                 echo "Test"
+                sh "mvn clean install"
 
             }
         }
